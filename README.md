@@ -31,4 +31,5 @@ A small web app built with **FastAPI** that allows users to input case details (
 ---
 
 ## 📂 Project Structure
+<img width="206" height="499" alt="image" src="https://github.com/user-attachments/assets/af93d598-66d3-4292-a00c-68e542ee6d14" />
 
