@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>⚖️ LegalAI Pro - Your Digital Legal Assistant</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<script src="script.js"></script>
+
+<body>
+  <div class="floating-shapes">
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+  </div>
+
+  <nav class="navbar">
+    <div class="nav-content">
+      <div class="logo" onclick="showPage('home')">⚖️ LegalAI Pro</div>
+      <ul class="nav-links">
+        <li class="nav-link active" onclick="showPage('home')">🏠 Home</li>
+        <li class="nav-link" onclick="showPage('services')">🔧 Services</li>
+        <li class="nav-link" onclick="showPage('about')">📋 About</li>
+        <li class="nav-link" onclick="showPage('contact')">📞 Contact</li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+    <!-- HOME PAGE -->
+    <div id="home" class="page active">
+      <div class="hero-section">
+        <h1 class="hero-title">⚖️ Welcome to LegalAI Pro ⚖️</h1>
+        <p class="hero-subtitle">🎯 Revolutionary AI-Powered Legal Assistant for Modern Legal Solutions 🚀</p>
+        <div class="cta-buttons">
+          <button class="cta-btn btn-primary" onclick="showPage('services')">
+            🚀 Get Started Now
+          </button>
+          <button class="cta-btn btn-secondary" onclick="showPage('about')">
+            📚 Learn More
+          </button>
+        </div>
+      </div>
+
+      <div class="stats-section">
+        <div class="stat-card">
+          <div class="stat-number">50K+</div>
+          <div class="stat-label">Cases Analyzed</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">98%</div>
+          <div class="stat-label">Success Rate</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">24/7</div>
+          <div class="stat-label">AI Support</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">1000+</div>
+          <div class="stat-label">Happy Clients</div>
+        </div>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <span class="feature-icon">🤖</span>
+          <h3 class="feature-title">AI-Powered Analysis</h3>
+          <p class="feature-description">Advanced machine learning algorithms analyze your legal cases with precision and provide comprehensive insights.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">⚡</span>
+          <h3 class="feature-title">Lightning Fast</h3>
+          <p class="feature-description">Get instant legal advice and case analysis within seconds. No more waiting for traditional consultations.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🛡️</span>
+          <h3 class="feature-title">Secure & Private</h3>
+          <p class="feature-description">Your legal data is protected with enterprise-grade security and complete confidentiality.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SERVICES PAGE -->
+    <div id="services" class="page">
+      <div class="main-form">
+        <h2 class="form-title">🎯 Legal AI Services</h2>
+        
+        <div class="form-group">
+          <label class="form-label">
+            <span class="emoji">🔧</span>
+            Choose Your Legal Service
+          </label>
+          <div class="service-options">
+            <div class="service-card selected" onclick="selectService('legal_advisor', this)">
+              <span class="emoji">👨‍⚖️</span>
+              <h4>Legal Advisor</h4>
+              <p>Get professional AI-powered legal guidance and comprehensive advice for your case</p>
+            </div>
+            <div class="service-card" onclick="selectService('similar_case', this)">
+              <span class="emoji">📋</span>
+              <h4>Similar Case Analysis</h4>
+              <p>Find and analyze similar legal precedents and case studies from our vast database</p>
+            </div>
+          </div>
+          <input type="hidden" id="service" value="legal_advisor" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="subject">
+            <span class="emoji">📝</span>
+            Case Subject
+          </label>
+          <input 
+            type="text" 
+            id="subject" 
+            class="form-input"
+            placeholder="🎯 E.g., Contract Dispute, Property Rights, Criminal Defense, Family Law..."
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="description">
+            <span class="emoji">📄</span>
+            Detailed Case Description
+          </label>
+          <textarea 
+            id="description" 
+            class="form-input form-textarea"
+            placeholder="✍️ Please provide a comprehensive description including:
+
+🔹 Key facts and circumstances
+🔹 Parties involved
+🔹 Timeline of events  
+🔹 Specific legal concerns
+🔹 Desired outcome
+
+💡 The more detailed your description, the better our AI can assist you with precise legal guidance..."
+          ></textarea>
+        </div>
+
+        <button class="submit-btn" onclick="submitCase()">
+          🚀 Analyze Case with AI
+          <span class="emoji">⚡</span>
+        </button>
+      </div>
+
+      <div class="response-container" id="responseContainer">
+        <div class="response-header">
+          <span style="font-size: 2.5rem;">🤖</span>
+          <h3>AI Legal Analysis Results</h3>
+        </div>
+        <div class="response-content" id="response"></div>
+        
+        <!-- Chat Section -->
+        <div class="chat-section" id="chatSection" style="display: none;">
+          <div class="chat-header">
+            <span style="font-size: 2rem;">💬</span>
+            <h4>Ask Follow-up Questions</h4>
+          </div>
+          <div class="quick-questions" id="quickQuestions"></div>
+          <div class="chat-conversation" id="chatConversation"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ABOUT PAGE -->
+    <div id="about" class="page">
+      <div class="hero-section">
+        <h1 class="hero-title">🎓 About LegalAI Pro</h1>
+        <p class="hero-subtitle">🌟 Revolutionizing Legal Services with Artificial Intelligence</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <span class="feature-icon">🎯</span>
+          <h3 class="feature-title">Our Mission</h3>
+          <p class="feature-description">To democratize legal assistance through cutting-edge AI technology, making professional legal guidance accessible to everyone, anywhere, anytime.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🏆</span>
+          <h3 class="feature-title">Our Vision</h3>
+          <p class="feature-description">To become the world's leading AI-powered legal platform, transforming how people access and interact with legal services globally.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">⚖️</span>
+          <h3 class="feature-title">Our Values</h3>
+          <p class="feature-description">Integrity, Innovation, and Accessibility. We believe everyone deserves quality legal guidance regardless of their background or resources.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🔬</span>
+          <h3 class="feature-title">Advanced Technology</h3>
+          <p class="feature-description">Our AI is trained on millions of legal documents, case studies, and precedents to provide accurate and relevant legal insights.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">👥</span>
+          <h3 class="feature-title">Expert Team</h3>
+          <p class="feature-description">Backed by experienced lawyers, AI researchers, and technology experts dedicated to continuous improvement and innovation.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🌍</span>
+          <h3 class="feature-title">Global Reach</h3>
+          <p class="feature-description">Serving clients worldwide with support for multiple legal systems and jurisdictions across different countries.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTACT PAGE -->
+    <div id="contact" class="page">
+      <div class="main-form">
+        <h2 class="form-title">📞 Contact Us</h2>
+        
+        <div class="features-grid">
+          <div class="feature-card">
+            <span class="feature-icon">📧</span>
+            <h3 class="feature-title">Email Support</h3>
+            <p class="feature-description">support@legalai-pro.com<br>Available 24/7 for all your queries</p>
+          </div>
+          <div class="feature-card">
+            <span class="feature-icon">📱</span>
+            <h3 class="feature-title">Phone Support</h3>
+            <p class="feature-description">+1 (555) 123-4567<br>Monday to Friday, 9 AM - 6 PM</p>
+          </div>
+          <div class="feature-card">
+            <span class="feature-icon">🏢</span>
+            <h3 class="feature-title">Office Address</h3>
+            <p class="feature-description">123 Legal Street, Suite 456<br>Law District, City 12345</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script src="script.js"></script>
+</body>
+</html>
